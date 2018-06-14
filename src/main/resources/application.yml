@@ -1,0 +1,48 @@
+spring:
+  thymeleaf:
+    mode: HTML5
+    encoding: utf-8
+    prefix: classpath:/templates/
+    # 关闭thymeleaf缓存，当代码更新时可实时查看
+    cache: false
+  resources:
+    static-locations: classpath:static
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5Dialect
+    hibernate:
+      ddl-auto: update
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+#    oracle驱动
+#    driver-class-name: oracle.jdbc.OracleDriver
+
+    username: root
+    password: 123456
+    url: jdbc:mysql://localhost:3306/login_app?useUnicode=true&useSSL=false&characterEncoding=utf8
+  data:
+    rest:
+      return-body-on-create: true
+  jackson:
+    time-zone: GMT+8
+
+  session:
+    store-type: none
+# 开发环境使用的spring配置
+debug: true
+server:
+    port: 8080
+    servlet:
+      session:
+        cookie:
+          name: SESSION_ID
+#security:
+#  basic:
+#    enabled: false
+#  oauth2:
+#    client:
+#      clientId: SampleClientId
+#      clientSecret: secret
+#      accessTokenUri: http://localhost:8081/auth/oauth/token
+#      userAuthorizationUri: http://localhost:8081/auth/oauth/authorize
+#    resource:
+#      userInfoUri: http://localhost:8081/auth/user/me

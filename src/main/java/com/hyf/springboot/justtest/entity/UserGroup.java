@@ -1,6 +1,7 @@
 package com.hyf.springboot.justtest.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
@@ -24,8 +25,8 @@ public class UserGroup {
     private String description;
 
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JsonIgnore
+    @ManyToMany(cascade = CascadeType.ALL,mappedBy = "groups")
+    @JsonIgnoreProperties(value = {"groups"})
     private Set<User> users;
 
 
@@ -34,7 +35,7 @@ public class UserGroup {
             joinColumns = {@JoinColumn(name = "group_id")},
             inverseJoinColumns = @JoinColumn(name = "privilege_id")
     )
-    @JsonIgnore
+    @JsonIgnoreProperties(value = {"groups"})
     private Set<UserPrivilege> privileges;
 
     public Integer getId() {

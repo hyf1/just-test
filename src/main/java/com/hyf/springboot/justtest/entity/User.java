@@ -2,6 +2,7 @@ package com.hyf.springboot.justtest.entity;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.ReadOnlyProperty;
@@ -50,8 +51,20 @@ public class User {
             joinColumns = {@JoinColumn(name = "user_id")},
             inverseJoinColumns = @JoinColumn(name = "group_id")
     )
-    @JsonIgnore
+    @JsonIgnoreProperties(value = {"users"})
     private Set<UserGroup> groups;
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Set<UserGroup> getGroups() {
+        return groups;
+    }
+
+    public void setGroups(Set<UserGroup> groups) {
+        this.groups = groups;
+    }
 
     public boolean isDeleted() {
         return deleted;
